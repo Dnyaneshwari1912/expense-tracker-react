@@ -24,7 +24,7 @@ function App() {
 
       <SummaryPanel expenses={expenses} />
 
-      {/* <CurrencyConverter expenses={expenses} /> */}
+      <CurrencyConverter expenses={expenses} /> 
 
       <ExpenseList expenses={expenses} deleteExpense={deleteExpense} />
     </div>
