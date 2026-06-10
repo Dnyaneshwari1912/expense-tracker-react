@@ -1,32 +1,35 @@
-import React, { useState } from 'react';
-import ExpenseForm from './components/ExpenseForm';
-import ExpenseList from './components/ExpenseList';
-import SummaryPanel from './components/SummaryPanel';
-import CurrencyConverter from './components/CurrencyConverter';
+import { useState } from "react";
+import IncomeForm from "./Components/IncomeForm";
+import ExpenseForm from "./Components/ExpenseForm";
+import IncomeList from "./Components/IncomeList";
+import ExpenseList from "./Components/ExpenseList";
+import SummaryPanel from "./Components/SummaryPanel";
 
 function App() {
+  const [income, setIncome] = useState([]);
   const [expenses, setExpenses] = useState([]);
 
-  const addExpense = (expense) => {
-    setExpenses([...expenses, expense]);
+  const addIncome = (item) => {
+    setIncome([...income, item]);
   };
 
-  const deleteExpense = (id) => {
-    const updatedExpenses = expenses.filter((expense) => expense.id !== id);
-    setExpenses(updatedExpenses);
+  const addExpense = (item) => {
+    setExpenses([...expenses, item]);
   };
 
   return (
     <div className="container">
-      <h1>Expense Tracker</h1>
+      <h1>Personal Finance Tracker</h1>
+
+      <IncomeForm addIncome={addIncome} />
 
       <ExpenseForm addExpense={addExpense} />
 
-      <SummaryPanel expenses={expenses} />
+      <SummaryPanel income={income} expenses={expenses} />
 
-      <CurrencyConverter expenses={expenses} /> 
+      <IncomeList income={income} />
 
-      <ExpenseList expenses={expenses} deleteExpense={deleteExpense} />
+      <ExpenseList expenses={expenses} />
     </div>
   );
 }

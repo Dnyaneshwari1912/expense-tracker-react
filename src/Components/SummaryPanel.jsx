@@ -1,30 +1,33 @@
-import React from 'react';
+function SummaryPanel({ income, expenses }) {
+  const totalIncome = income.reduce(
+    (sum, item) => sum + item.amount,
+    0
+  );
 
-function SummaryPanel({ expenses }) {
-  const total = expenses.reduce((sum, item) => sum + item.amount, 0);
+  const totalExpense = expenses.reduce(
+    (sum, item) => sum + item.amount,
+    0
+  );
 
-  const categories = {};
-
-  expenses.forEach((expense) => {
-    if (categories[expense.category]) {
-      categories[expense.category] += expense.amount;
-    } else {
-      categories[expense.category] = expense.amount;
-    }
-  });
+  const savings = totalIncome - totalExpense;
 
   return (
     <div className="summary">
-      <h2>Total Expenses: ₹{total}</h2>
+  <div className="summary-card">
+    <h3>Total Income</h3>
+    <p>₹{totalIncome}</p>
+  </div>
 
-      <h3>Category Breakdown</h3>
+  <div className="summary-card">
+    <h3>Total Expense</h3>
+    <p>₹{totalExpense}</p>
+  </div>
 
-      {Object.keys(categories).map((category) => (
-        <p key={category}>
-          {category}: ₹{categories[category]}
-        </p>
-      ))}
-    </div>
+  <div className="summary-card">
+    <h3>Savings</h3>
+    <p>₹{savings}</p>
+  </div>
+</div>
   );
 }
 

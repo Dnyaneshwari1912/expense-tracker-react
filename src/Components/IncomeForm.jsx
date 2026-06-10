@@ -1,34 +1,34 @@
 import { useState } from "react";
 
-function ExpenseForm({ addExpense }) {
-  const [name, setName] = useState("");
+function IncomeForm({ addIncome }) {
+  const [source, setSource] = useState("");
   const [amount, setAmount] = useState("");
 
   const handleSubmit = (e) => {
     e.preventDefault();
 
-    const expense = {
+    const income = {
       id: Date.now(),
-      name,
+      source,
       amount: Number(amount),
     };
 
-    addExpense(expense);
+    addIncome(income);
 
-    setName("");
+    setSource("");
     setAmount("");
   };
 
   return (
     <div className="container">
     <form onSubmit={handleSubmit}>
-      <h2>Add Expense</h2>
+      <h2>Add Income</h2>
 
       <input
         type="text"
-        placeholder="Expense Name"
-        value={name}
-        onChange={(e) => setName(e.target.value)}
+        placeholder="Income Source"
+        value={source}
+        onChange={(e) => setSource(e.target.value)}
       />
 
       <input
@@ -38,10 +38,10 @@ function ExpenseForm({ addExpense }) {
         onChange={(e) => setAmount(e.target.value)}
       />
 
-      <button>Add Expense</button>
+      <button>Add Income</button>
     </form>
     </div>
   );
 }
 
-export default ExpenseForm;
+export default IncomeForm;
